@@ -1,0 +1,88 @@
+Test for Age
+Normality test P value:  4.83480008242e-06
+Group Variances
+24.19 	27.13 	6.48 	25.93 	9.10 	
+Group pv
+0.0186861724194	0.063506480631	0.223563683642	0.000531071652686	2.22672707566e-20	
+Group Std. Dev.
+4.92 	5.21 	2.55 	5.09 	3.02 	
+Max std.dev 5.21
+Min std.dev 2.55
+Max/Min std deviation ratio
+2.0455183715
+one-way anova:
+F value:171.507032703
+P value:1.08209161252e-126
+
+Test for logMessage
+Normality test P value:  9.39509351994e-08
+Group Variances
+1.69 	1.46 	1.11 	1.05 	0.79 	
+Group pv
+4.70733670567e-13	0.00128978562365	0.241298177238	0.00675124879768	0.885490500124	
+Group Std. Dev.
+1.30 	1.21 	1.05 	1.03 	0.89 	
+Max std.dev 1.30
+Min std.dev 0.89
+Max/Min std deviation ratio
+1.46720111916
+
+Test for Member
+Normality test P value:  0.0
+Group Variances
+20248.61 	22889.02 	8097.84 	2811.37 	23388.78 	
+Group pv
+3.83514737902e-137	3.82929523696e-27	5.70710375673e-19	3.00062674153e-94	4.38764812847e-124	
+Group Std. Dev.
+142.30 	151.29 	89.99 	53.02 	152.93 	
+Max std.dev 152.93
+Min std.dev 53.02
+Max/Min std deviation ratio
+2.88432940353
+Test for log Member
+Normality test P value:  1.41609954887e-68
+Group Variances
+0.07 	0.10 	0.06 	0.03 	0.08 	
+Group pv
+1.38452162069e-25	2.89294759724e-08	0.000702448240038	5.4924626683e-37	5.05757398975e-18	
+Group Std. Dev.
+0.27 	0.31 	0.24 	0.17 	0.28 	
+Max std.dev 0.31
+Min std.dev 0.17
+Max/Min std deviation ratio
+1.82932542159
+
+Test for Conversation
+Normality test P value:  3.43992664105e-199
+Group Variances
+35471.75 	25384.00 	20663.37 	6541.99 	24727.37 	
+Group pv
+2.95254331496e-27	4.28375222664e-45	3.31245528205e-19	2.33418889588e-69	1.91181346914e-57	
+Group Std. Dev.
+188.34 	159.32 	143.75 	80.88 	157.25 	
+Max std.dev 188.34
+Min std.dev 80.88
+Max/Min std deviation ratio
+2.32855388711
+Test for log Conversation
+Normality test P value:  3.88627161736e-52
+Group Variances
+0.67 	0.68 	0.45 	0.46 	0.48 	
+Group pv
+4.68127075995e-25	1.64457508555e-10	0.176963519148	1.28022378835e-05	5.80333145852e-06	
+Group Std. Dev.
+0.82 	0.83 	0.67 	0.68 	0.70 	
+Max std.dev 0.83
+Min std.dev 0.67
+Max/Min std deviation ratio
+1.23417723679
+Non parametric ANOVA -- Kurskal-Wallis H test
+Message
+Kruskal H  66.8581128769 , p  1.04440844339e-13
+Kruskal H for log  66.8581128769 , p  1.04440844339e-13
+
+Member
+Kruskal H  256.206603044 , p  2.99488660775e-54
+
+Conversation
+Kruskal H  139.292303366 , p  4.00082124515e-29
