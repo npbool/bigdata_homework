@@ -36,7 +36,7 @@ def normality_test(data):
 	#p: estimated pdf using kernel density estimation
 	#p_norm: pdf of Gaussian with same mean and variance
 	#pv: P value of normality test
-	return x,p,p_norm,pv
+	return x,p,p_norm,k2, pv
 
 def recal_mean_std(x,p):
 	mean = 0
@@ -54,7 +54,7 @@ def visualize(data, data_comp, name):
 	plt.subplot(211)
 	plt.xlabel(name)	
 	for i,comp in enumerate(data_comp):		
-		x,p,p_norm,pv = normality_test(comp)
+		x,p,p_norm,k2,pv = normality_test(comp)
 		mean = np.mean(x)
 		stddev = np.std(x)		
 		plt.plot(x, p, colors[i], label="group %d" %(i+1) )
@@ -64,7 +64,7 @@ def visualize(data, data_comp, name):
 	plt.subplot(212)		
 		#plt.errorbar(i, mean, yerr=stddev, ecolor=colors[i])
 	grand_mean = np.mean(data)
-	plt.boxplot(data_comp)
+	plt.boxplot(data_comp, showmeans=True, meanline=True	)
 	plt.axhline(y=grand_mean, label="Grand Mean")
 	plt.xlabel("Group")
 	plt.ylabel(name)
@@ -77,22 +77,24 @@ def visualize(data, data_comp, name):
 def test_anova(data, data_cat, name):				
 	print "Test for %s" % name
 	#normality test with all data
-	x,p,p_norm,pv = normality_test(data)
+	print "Mean:", np.mean(data)
+	print "Variance:", np.var(data)
+	x,p,p_norm,k2, pv = normality_test(data)
 	plt.figure()
 	plt.plot(x, p, 'r', label="estimate pdf")
 	plt.plot(x, p_norm, 'b--', label="gaussian pdf")
 	plt.title("P value:" + "%.4e"%pv)
 	plt.legend()
 	plt.savefig("img/"+"grand_%s.png" % name)
-	print "Normality test P value: ", pv
+	print "Normality test k2:", k2, ",P value: ", pv
 	#normality test within each group
 	f,ax = plt.subplots(5,1,sharex=True,figsize=(8,12))	
 
 	group_pv = []
 	for i,comp in enumerate(data_cat):				
-		ax[i].set_title("Group " + str(i))
+		ax[i].set_title("Group " + str(i+1))
 
-		x,p,p_norm,pv = normality_test(comp)
+		x,p,p_norm,k2, pv = normality_test(comp)
 		ax[i].plot(x, p, 'r', label="estimate pdf")
 		ax[i].plot(x, p_norm, 'b--', label="gaussian pdf")
 		ax[i].legend(loc=1, prop={'size':10})	
@@ -134,14 +136,14 @@ def log(data_comp):
 def compare_log(data, data_cat,name):
 	f,ax = plt.subplots(2,1)
 	plt.title(name)
-	x,p,p_norm,pv = normality_test(data)
+	x,p,p_norm,k2,pv = normality_test(data)
 	ax[0].plot(x, p, 'r', label="estimate pdf")
 	ax[0].plot(x, p_norm, 'b--', label="gaussian pdf")
 	ax[0].set_title(name+" pdf")
 	ax[0].legend()
 	#ax.savefig(""img/"+grand.png")
 
-	x,p,p_norm,pv = normality_test(np.log10(data))
+	x,p,p_norm,k2,pv = normality_test(np.log10(data))
 	ax[1].plot(x, p, 'r', label="estimate pdf")
 	ax[1].plot(x, p_norm, 'b--', label="gaussian pdf")
 	ax[1].set_title("Log transformation pdf")
@@ -160,6 +162,7 @@ visualize(ages, age_cat, "Age")
 print ""
 msg, msg_cat = load_data(3)
 compare_log(msg, msg_cat, "Message")
+test_anova(msg, msg_cat, "Message")
 msg_log = np.log10(msg)
 msg_cat_log = [np.log10(comp) for comp in msg_cat]
 test_anova(msg_log, msg_cat_log, "logMessage")
